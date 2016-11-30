@@ -1,6 +1,6 @@
 Package.describe({
   name: 'clinical:hl7-resource-person',
-  version: '1.0.1',
+  version: '1.0.2',
   summary: 'HL7 FHIR Resource - Person',
   git: 'https://github.com/clinical-meteor/hl7-resource-person',
   documentation: 'README.md'
@@ -21,24 +21,25 @@ Package.onUse(function (api) {
   api.addFiles('server/rest.js', 'server');
   api.addFiles('server/initialize.js', 'server');
 
-    api.use('clinical:base-model@1.3.1');
-    api.use('clinical:router@2.0.17');
-    api.addFiles('client/components/personUpsertPage/personUpsertPage.html', ['client']);
-    api.addFiles('client/components/personUpsertPage/personUpsertPage.js', ['client']);
-    api.addFiles('client/components/personUpsertPage/personUpsertPage.less', ['client']);
+  api.use('clinical:base-model@1.3.1');
+  api.use('clinical:router@2.0.17');
 
-    api.addFiles('client/components/personsTablePage/personsTablePage.html', ['client']);
-    api.addFiles('client/components/personsTablePage/personsTablePage.js', ['client']);
-    api.addFiles('client/components/personsTablePage/personsTablePage.less', ['client']);
-    api.addFiles('client/components/personsTablePage/jquery.tablesorter.js', ['client']);
-
-    api.addFiles('client/components/personPreviewPage/personPreviewPage.html', ['client']);
-    api.addFiles('client/components/personPreviewPage/personPreviewPage.js', ['client']);
-    api.addFiles('client/components/personPreviewPage/personPreviewPage.less', ['client']);
-
-    api.addFiles('client/components/personsListPage/personsListPage.html', ['client']);
-    api.addFiles('client/components/personsListPage/personsListPage.js', ['client']);
-    api.addFiles('client/components/personsListPage/personsListPage.less', ['client']);
+    // api.addFiles('client/components/personUpsertPage/personUpsertPage.html', ['client']);
+    // api.addFiles('client/components/personUpsertPage/personUpsertPage.js', ['client']);
+    // api.addFiles('client/components/personUpsertPage/personUpsertPage.less', ['client']);
+    //
+    // api.addFiles('client/components/personsTablePage/personsTablePage.html', ['client']);
+    // api.addFiles('client/components/personsTablePage/personsTablePage.js', ['client']);
+    // api.addFiles('client/components/personsTablePage/personsTablePage.less', ['client']);
+    // api.addFiles('client/components/personsTablePage/jquery.tablesorter.js', ['client']);
+    //
+    // api.addFiles('client/components/personPreviewPage/personPreviewPage.html', ['client']);
+    // api.addFiles('client/components/personPreviewPage/personPreviewPage.js', ['client']);
+    // api.addFiles('client/components/personPreviewPage/personPreviewPage.less', ['client']);
+    //
+    // api.addFiles('client/components/personsListPage/personsListPage.html', ['client']);
+    // api.addFiles('client/components/personsListPage/personsListPage.js', ['client']);
+    // api.addFiles('client/components/personsListPage/personsListPage.less', ['client']);
 
   api.export('Person');
   api.export('Persons');
