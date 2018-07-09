@@ -1,8 +1,21 @@
-##clinical:hl7-resource-person
+## clinical:hl7-resource-person
 
-HL7 FHIR Resource - Person
+#### Licensing  
 
-===============================
+![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
+
+
+#### Integration & Verification Tests  
+
+[![CircleCI](https://circleci.com/gh/clinical-meteor/hl7-resource-person/tree/master.svg?style=svg)](https://circleci.com/gh/clinical-meteor/hl7-resource-person/tree/master)
+
+
+#### API Reference  
+
+This package implements the FHIR Person resource schema provided at [https://www.hl7.org/fhir/DSTU2/person.html](https://www.hl7.org/fhir/DSTU2/person.html).  
+
+
+
 #### Installation  
 
 ````bash
@@ -13,17 +26,8 @@ meteor add clinical:hl7-resource-person
 INITIALIZE=true meteor
 ````
 
-===============================
+
 #### Utilities  
 
 If you're working with HL7 FHIR Resources, we recommend using [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop?hl=en).
 
-===============================
-#### Conformance Statement  
-
-The resource in this package implements the FHIR Practitioner Resource schema provided at  [https://www.hl7.org/fhir/person.html](https://www.hl7.org/fhir/person.html).  
-
-===============================
-#### Licensing  
-
-![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)
