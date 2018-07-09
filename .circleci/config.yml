@@ -100,7 +100,7 @@ jobs:
 
     # Create a baseline app
     - run: cd .. && meteor create --release METEOR@1.6.0.1 --bare baseline
-    - run: cd ../baseline && meteor remove static-html
+    # - run: cd ../baseline && meteor remove static-html
 
     - run: cd ../baseline && meteor --version
     - run: ls -la
@@ -108,7 +108,7 @@ jobs:
     - run: cd ../baseline && ls -la
 
     - run: cd ../baseline && meteor npm install
-    - run: cd ../baseline && meteor npm install react lodash
+    - run: cd ../baseline && meteor npm install react 
     - run: cd ../baseline && mkdir packages && cd packages && mkdir hl7-resource-person 
     - run: cp -R ./* ../baseline/packages/hl7-resource-person 
     - run: cd ../baseline/packages/hl7-resource-person && pwd
