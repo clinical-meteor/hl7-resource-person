@@ -4,8 +4,6 @@ import PersonsPage from './client/react/PersonsPage';
 import PersonTable from './client/react/PersonTable';
 import PersonDetail from './client/react/PersonDetail';
 
-import { Person, Persons, PersonSchema } from './lib/Persons';
-
 var DynamicRoutes = [{
   'name': 'PersonPage',
   'path': '/persons',
@@ -25,8 +23,7 @@ export {
 
   PersonsPage,
   PersonTable,
-  PersonDetail,
-  PersonCard
+  PersonDetail
 };
 
 
