@@ -20,25 +20,25 @@ Meteor.methods({
       Persons.insert(personObject, function(error, result){
         if (error) {
           console.log(error);
-          if ((typeof HipaaLogger === 'object') && self.userId) {
-            HipaaLogger.logEvent({
-              eventType: "error",
-              userId: self.userId,
-              userName: fullName,
-              collectionName: "Persons"
-            });
-          }
+          // if ((typeof HipaaLogger === 'object') && self.userId) {
+          //   HipaaLogger.logEvent({
+          //     eventType: "error",
+          //     userId: self.userId,
+          //     userName: fullName,
+          //     collectionName: "Persons"
+          //   });
+          // }
         }
         if (result) {
           console.log('Person created: ' + result);
-          if ((typeof HipaaLogger === 'object') && self.userId) {
-            HipaaLogger.logEvent({
-              eventType: "create",
-              userId: self.userId,
-              userName: fullName,
-              collectionName: "Persons"
-            });
-          }
+          // if ((typeof HipaaLogger === 'object') && self.userId) {
+          //   HipaaLogger.logEvent({
+          //     eventType: "create",
+          //     userId: self.userId,
+          //     userName: fullName,
+          //     collectionName: "Persons"
+          //   });
+          // }
         }
       });
     // } else {
