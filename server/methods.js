@@ -4,37 +4,47 @@ Meteor.methods({
   createPerson:function(personObject){
     check(personObject, Object);
 
-    if (process.env.NODE_ENV === 'test') {
+    console.log('personObject', personObject)
+
+    let self = this;
+    let user = Meteor.users.findOne({_id: this.userId});
+    let fullName = '';
+
+    if(user && user.fullName()){
+      fullName = user.fullName();
+    }
+
+    // if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
       console.log('Creating Person...');
       Persons.insert(personObject, function(error, result){
         if (error) {
           console.log(error);
-          if (typeof HipaaLogger === 'object') {
+          if ((typeof HipaaLogger === 'object') && self.userId) {
             HipaaLogger.logEvent({
               eventType: "error",
-              userId: Meteor.userId(),
-              userName: Meteor.user().fullName(),
+              userId: self.userId,
+              userName: fullName,
               collectionName: "Persons"
             });
           }
         }
         if (result) {
           console.log('Person created: ' + result);
-          if (typeof HipaaLogger === 'object') {
+          if ((typeof HipaaLogger === 'object') && self.userId) {
             HipaaLogger.logEvent({
               eventType: "create",
-              userId: Meteor.userId(),
-              userName: Meteor.user().fullName(),
+              userId: self.userId,
+              userName: fullName,
               collectionName: "Persons"
             });
           }
         }
       });
-    } else {
-      console.log('This command can only be run in a test environment.');
-      console.log('Try setting NODE_ENV=test');
-    }
+    // } else {
+    //   console.log('This command can only be run in a test environment.');
+    //   console.log('Try setting NODE_ENV=test');
+    // }
   },
   initializePerson:function(){
     if (Persons.find().count() === 0) {
