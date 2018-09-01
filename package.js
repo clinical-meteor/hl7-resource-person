@@ -1,6 +1,6 @@
 Package.describe({
   name: 'clinical:hl7-resource-person',
-  version: '1.1.10',
+  version: '1.2.0',
   summary: 'HL7 FHIR Resource - Person',
   git: 'https://github.com/clinical-meteor/hl7-resource-person',
   documentation: 'README.md'
@@ -11,8 +11,11 @@ Package.onUse(function (api) {
 
   api.use('meteor-platform');
   api.use('mongo');
-  api.use('aldeed:simple-schema@1.3.3');
-  api.use('aldeed:collection2@2.5.0');
+  
+  api.use('aldeed:collection2@3.0.0');
+  api.use('clinical:hl7-resource-datatypes@4.0.0');
+  api.use('clinical:hl7-resource-bundle@1.4.0');
+
   api.use('simple:json-routes@2.1.0');
   api.use('momentjs:moment@2.17.1');
   api.use('ecmascript@0.9.0');
@@ -22,10 +25,8 @@ Package.onUse(function (api) {
 
   api.use('clinical:glass-ui@2.2.4');
   api.use('clinical:extended-api@2.2.2');
-  api.use('clinical:base-model@1.3.5');
+  api.use('clinical:base-model@1.4.0');
   api.use('clinical:user-model@1.5.0');
-  api.use('clinical:hl7-resource-datatypes@3.0.1');
-  api.use('clinical:hl7-resource-bundle@1.3.10');
   api.use('matb33:collection-hooks@0.7.15');
   api.use('clinical:alert@2.1.3');
 
@@ -45,3 +46,8 @@ Package.onUse(function (api) {
 
   api.mainModule('index.jsx', 'client');
 });
+
+
+Npm.depends({
+  "simpl-schema": "1.5.3"
+})
