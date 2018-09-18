@@ -17,7 +17,7 @@ Meteor.methods({
     // if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
       console.log('Creating Person...');
-      Persons.insert(personObject, function(error, result){
+      return Persons.insert(personObject, function(error, result){
         if (error) {
           console.log(error);
           // if ((typeof HipaaLogger === 'object') && self.userId) {
