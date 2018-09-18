@@ -14,10 +14,11 @@ Meteor.methods({
       fullName = user.fullName();
     }
 
+
     // if (process.env.NODE_ENV === 'test') {
       console.log('-----------------------------------------');
       console.log('Creating Person...');
-      return Persons.insert(personObject, function(error, result){
+      return Persons._collection.insert(personObject, function(error, result){
         if (error) {
           console.log(error);
           // if ((typeof HipaaLogger === 'object') && self.userId) {
