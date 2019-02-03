@@ -5,7 +5,7 @@ import { GlassCard, VerticalCanvas } from 'meteor/clinical:glass-ui';
 import Glass from './Glass';
 //import GlassCard from './GlassCard';
 import PersonDetail from './PersonDetail';
-import PersonTable from './PersonTable';
+import PersonsTable from './PersonsTable';
 import React from 'react';
 import { ReactMeteorData } from 'meteor/react-meteor-data';
 import ReactMixin from 'react-mixin';
@@ -84,7 +84,7 @@ export class PersonsPage extends React.Component {
                    <PersonDetail id='newPerson' />
                  </Tab>
                  <Tab className="personListTab" label='Persons' onActive={this.handleActive} style={this.data.style.tab} value={1}>
-                   <PersonTable showBarcodes={true} showAvatars={true} />
+                   <PersonsTable showBarcodes={true} showAvatars={true} />
                  </Tab>
                  <Tab className="personDetailTab" label='Detail' onActive={this.handleActive} style={this.data.style.tab} value={2}>
                    <PersonDetail id='personDetails' currentPerson={this.data.currentPerson} />
