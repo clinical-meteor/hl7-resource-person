@@ -38,7 +38,7 @@ flattenPerson = function(person){
   return result;
 }
 
-export class PersonTable extends React.Component {
+export class PersonsTable extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -110,7 +110,7 @@ export class PersonTable extends React.Component {
       data.style.cellHideOnPhone.display = 'table-cell';
     }
 
-    // console.log("PersonTable[data]", data);
+    // console.log("PersonsTable[data]", data);
     return data;
   }
   imgError(avatarId) {
@@ -157,7 +157,7 @@ export class PersonTable extends React.Component {
   onSend(id){
     let person = Persons.findOne({_id: id});
 
-    console.log("PersonTable.onSend()", person);
+    console.log("PersonsTable.onSend()", person);
 
     var httpEndpoint = "http://localhost:8080";
     if (get(Meteor, 'settings.public.interfaces.default.channel.endpoint')) {
@@ -235,5 +235,5 @@ export class PersonTable extends React.Component {
 }
 
 
-ReactMixin(PersonTable.prototype, ReactMeteorData);
-export default PersonTable;
+ReactMixin(PersonsTable.prototype, ReactMeteorData);
+export default PersonsTable;

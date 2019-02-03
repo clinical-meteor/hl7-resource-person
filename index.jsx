@@ -1,7 +1,7 @@
 
 
 import PersonsPage from './client/react/PersonsPage';
-import PersonTable from './client/react/PersonTable';
+import PersonsTable from './client/react/PersonsTable';
 import PersonDetail from './client/react/PersonDetail';
 
 var DynamicRoutes = [{
@@ -22,7 +22,7 @@ export {
   DynamicRoutes, 
 
   PersonsPage,
-  PersonTable,
+  PersonsTable,
   PersonDetail
 };
 
