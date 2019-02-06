@@ -15,19 +15,23 @@ flattenPerson = function(person){
     _id: person._id,
     id: person.id,
     active: true,
-    gender: person.gender,
     name: '',
-    mrn: '',
-    birthDate: '',
-    photo: "/thumbnail-blank.png",
-    initials: 'abc'
+    relation: '',
+    email: '',
+    phone: ''
+    // gender: person.gender,
+    // name: '',
+    // mrn: '',
+    // birthDate: '',
+    // photo: "/thumbnail-blank.png",
+    // initials: 'abc'
   };
 
   // there's an off-by-1 error between momment() and Date() that we want
   // to account for when converting back to a string
-  result.birthDate = moment(person.birthDate).add(1, 'days').format("YYYY-MM-DD")
-  result.photo = get(person, 'photo[0].url', '');
-  result.mrn = get(person, 'identifier[0].value', '');
+  // result.birthDate = moment(person.birthDate).add(1, 'days').format("YYYY-MM-DD")
+  // result.photo = get(person, 'photo[0].url', '');
+  // result.mrn = get(person, 'identifier[0].value', '');
 
   if(has(person, 'name[0].text')){
     result.name = get(person, 'name[0].text');    
@@ -35,10 +39,24 @@ flattenPerson = function(person){
     result.name = get(person, 'name[0].given[0]') + ' ' + get(person, 'name[0].family[0]');
   }
 
+  var telecom = get(person, 'telecom')
+  telecom.forEach(function(teleco){
+    switch (teleco.system) {
+      case 'email':
+        result.email = teleco.value;
+        break;
+      case 'phone':
+        result.phone = teleco.value;
+        break;
+      default:
+        break;
+    }  
+  })
+
   return result;
 }
 
-export class PersonsTable extends React.Component {
+export class PersonsDirectory extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -110,7 +128,7 @@ export class PersonsTable extends React.Component {
       data.style.cellHideOnPhone.display = 'table-cell';
     }
 
-    // console.log("PersonsTable[data]", data);
+    // console.log("PersonsDirectory[data]", data);
     return data;
   }
   imgError(avatarId) {
@@ -158,7 +176,7 @@ export class PersonsTable extends React.Component {
   onSend(id){
     let person = Persons.findOne({_id: id});
 
-    console.log("PersonsTable.onSend()", person);
+    console.log("PersonsDirectory.onSend()", person);
 
     var httpEndpoint = "http://localhost:8080";
     if (get(Meteor, 'settings.public.interfaces.default.channel.endpoint')) {
@@ -194,10 +212,14 @@ export class PersonsTable extends React.Component {
             { this.renderRowAvatar(this.data.persons[i], this.data.style.avatar) }
   
             <td className='name' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={this.data.style.cell}>{this.data.persons[i].name }</td>
-            <td className='gender' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={this.data.style.cell}>{this.data.persons[i].gender}</td>
+            <td className='relation' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={this.data.style.cell}>{this.data.persons[i].relation }</td>
+            <td className='email' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={this.data.style.cell}>{this.data.persons[i].email }</td>
+            <td className='phone' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={this.data.style.cell}>{this.data.persons[i].phone }</td>
+
+            {/* <td className='gender' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={this.data.style.cell}>{this.data.persons[i].gender}</td>
             <td className='birthDate' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={{minWidth: '100px', paddingTop: '16px'}}>{this.data.persons[i].birthDate }</td>
             <td className='isActive' onClick={ this.rowClick.bind('this', this.data.persons[i]._id)} style={this.data.style.cellHideOnPhone}>{this.data.persons[i].active}</td>
-            <td className='mrn' style={this.data.style.cellHideOnPhone}>{this.data.persons[i].mrn}</td>
+            <td className='mrn' style={this.data.style.cellHideOnPhone}>{this.data.persons[i].mrn}</td> */}
             {/* <td className='id' onClick={ this.rowClick.bind('this', this.data.persons[i].id)} style={this.data.style.cellHideOnPhone}><span className="barcode">{this.data.persons[i].id}</span></td>             */}
 
               { this.renderSendButton(this.data.persons[i], this.data.style.avatar) }
@@ -215,11 +237,13 @@ export class PersonsTable extends React.Component {
             <tr>
               { this.renderRowAvatarHeader() }
 
-              <th className='name'>name</th>
-              <th className='gender'>gender</th>
-              <th className='birthdate' style={{minWidth: '100px'}}>birthdate</th>
+              <th className='name'>Name</th>
+              <th className='relation'>Relation</th>
+              <th className='email'>Email</th>
+              <th className='phone'>Phone</th>
+              {/* <th className='birthdate' style={{minWidth: '100px'}}>birthdate</th>
               <th className='isActive' style={this.data.style.hideOnPhone}>active</th>
-              <th className='mrn' style={this.data.style.hideOnPhone}>mrn</th>
+              <th className='mrn' style={this.data.style.hideOnPhone}>mrn</th> */}
               {/* <th className='id' style={this.data.style.hideOnPhone}>_id</th> */}
               
               { this.renderSendButtonHeader() }
@@ -236,5 +260,5 @@ export class PersonsTable extends React.Component {
 }
 
 
-ReactMixin(PersonsTable.prototype, ReactMeteorData);
-export default PersonsTable;
+ReactMixin(PersonsDirectory.prototype, ReactMeteorData);
+export default PersonsDirectory;

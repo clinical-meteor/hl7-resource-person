@@ -3,6 +3,7 @@
 import PersonsPage from './client/react/PersonsPage';
 import PersonsTable from './client/react/PersonsTable';
 import PersonDetail from './client/react/PersonDetail';
+import PersonsDirectory from './client/react/PersonsDirectory';
 
 var DynamicRoutes = [{
   'name': 'PersonPage',
@@ -23,6 +24,7 @@ export {
 
   PersonsPage,
   PersonsTable,
+  PersonsDirectory,
   PersonDetail
 };
 
